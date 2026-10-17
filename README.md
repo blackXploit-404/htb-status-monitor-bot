@@ -1,3 +1,5 @@
+[![HTB Status Monitor Bot](https://github.com/blackXploit-404/htb-status-monitor-bot/actions/workflows/htb.yml/badge.svg)](https://github.com/blackXploit-404/htb-status-monitor-bot/actions/workflows/htb.yml)
+
 # HTB Status Monitor Bot
 
 This is a simple script that checks the Hack The Box machines API and posts Discord embeds for the next scheduled (unreleased) machine, newly released machines, and newly retired machines. Scheduled release alerts use HTB's unreleased-machine feed and show the release time in each Discord user's local timezone. It uses a Discord **webhook**, so there is no need to create or host a Discord bot application separately.
