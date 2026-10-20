@@ -149,7 +149,7 @@ class DiscordEmbedTests(unittest.TestCase):
         response = type("Response", (), {"raise_for_status": lambda self: None})()
 
         with (
-            patch.object(app, "WEBHOOK", "https://discord.example/webhook"),
+            patch.object(app, "WEBHOOK", "https://discord.example/webhook\n"),
             patch.object(
                 app,
                 "FOOTER_MESSAGE",
@@ -163,6 +163,10 @@ class DiscordEmbedTests(unittest.TestCase):
 
         payload = post_request.call_args.kwargs["json"]
         embed = payload["embeds"][0]
+        self.assertEqual(
+            post_request.call_args.args[0],
+            "https://discord.example/webhook",
+        )
         self.assertEqual(
             embed["thumbnail"]["url"],
             "https://labs.hackthebox.com/storage/avatars/stream.png",

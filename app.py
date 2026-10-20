@@ -14,8 +14,11 @@ STATE_FILE = PROJECT_DIR / "state.json"
 
 load_dotenv(ENV_FILE)
 
-HTB_TOKEN = os.getenv("HTB_TOKEN")
-WEBHOOK = os.getenv("WEBHOOK") or os.getenv("DISCORD_WEBHOOK")
+HTB_TOKEN = (os.getenv("HTB_TOKEN") or "").strip()
+WEBHOOK = (
+    (os.getenv("WEBHOOK") or "").strip()
+    or (os.getenv("DISCORD_WEBHOOK") or "").strip()
+)
 FOOTER_MESSAGE = os.getenv("FOOTER_MESSAGE") or (
     "Let's pwn together. Thanks, #!/bin/bash team." 
 )
@@ -297,8 +300,10 @@ def post(title, machine, color, description):
             "inline": False,
         })
 
+    webhook_url = WEBHOOK.strip() if isinstance(WEBHOOK, str) else WEBHOOK
+
     response = requests.post(
-        WEBHOOK,
+        webhook_url,
         json={
             "embeds": [embed],
             "allowed_mentions": {"parse": []},
