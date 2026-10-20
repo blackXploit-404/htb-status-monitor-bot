@@ -27,7 +27,10 @@ The script reads/writes `state.json`, including the ID of the next scheduled rel
 
 ## Run it automatically with GitHub Actions
 
-The included `.github/workflows/htb.yml` runs every 5 ( you can change the interval as you want ) minutes and can also be started manually from the repository's **Actions** tab. To enable it:
+To prevent rate limiting the included `.github/workflows/htb.yml` runs every 15 minutes and can also be started manually from the repository's **Actions** tab. To change the interval, edit the workflow's cron schedule. 
+Please Note : GitHub Actions schedules use UTC and may be delayed during periods of high load. 
+
+To enable it:
 
 1. Push this project to a GitHub repository.
 2. In **Settings → Secrets and variables → Actions**, add repository secrets named `HTB_TOKEN` and `DISCORD_WEBHOOK`. Optionally add a repository variable named `FOOTER_MESSAGE` to customize the embed sign-off.
